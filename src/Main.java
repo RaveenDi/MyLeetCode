@@ -5,7 +5,7 @@ public class Main {
         int[] array = new int[]{38, 21, 47, 50, 24, 18, 24, 4, 22, 10, 23, 23, 12};
 
         long startTime = System.nanoTime();
-        array = bubbleSort(array);
+        array = selectionSort(array);
         long endTime = System.nanoTime();
 
         System.out.print( "Array    : ");
@@ -13,6 +13,21 @@ public class Main {
 
         float duration = (endTime - startTime);
         System.out.println( "\nDuration : " + duration/1000000);
+    }
+
+    public static int[] selectionSort(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            int minimum = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[minimum] > array[j]) {
+                    minimum = j;
+                }
+            }
+            if (i != minimum) {
+                array = swap(array, i, minimum);
+            }
+        }
+        return array;
     }
 
     public static int[] bubbleSort(int[] array) {
