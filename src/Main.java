@@ -4,8 +4,15 @@ public class Main {
     public static void main(String[] args) {
         int[] array = new int[]{38, 21, 47, 50, 24, 18, 24, 4, 22, 10, 23, 23, 12};
 
+        long startTime = System.nanoTime();
         array = bubbleSort(array);
-        Arrays.stream(array).forEach(n -> System.out.print(" " + n));
+        long endTime = System.nanoTime();
+
+        System.out.print( "Array    : ");
+        Arrays.stream(array).forEach(n -> System.out.print(n + " "));
+
+        float duration = (endTime - startTime);
+        System.out.println( "\nDuration : " + duration/1000000);
     }
 
     public static int[] bubbleSort(int[] array) {
