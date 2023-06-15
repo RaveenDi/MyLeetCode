@@ -5,7 +5,7 @@ public class Main {
         int[] array = new int[]{38, 21, 47, 50, 24, 18, 24, 4, 22, 10, 23, 23, 12};
 
         long startTime = System.nanoTime();
-        array = selectionSort(array);
+        array = insertionSort(array);
         long endTime = System.nanoTime();
 
         System.out.print( "Array    : ");
@@ -13,6 +13,20 @@ public class Main {
 
         float duration = (endTime - startTime);
         System.out.println( "\nDuration : " + duration/1000000);
+    }
+
+    public static int[] insertionSort(int[] array) {
+        int value;
+        for (int i = 1; i < array.length; i++) {
+            value = array[i];
+            int j = i-1;
+            while ((j >= 0) && array[j] > value) {
+                array[j+1] = array[j];
+                j--;
+            }
+            array[j+1] = value;
+        }
+        return array;
     }
 
     public static int[] selectionSort(int[] array) {
