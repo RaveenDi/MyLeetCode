@@ -5,7 +5,7 @@ public class Main {
         int[] array = new int[]{38, 21, 47, 50, 24, 18, 24, 4, 22, 10, 23, 23, 12};
 
         long startTime = System.nanoTime();
-        array = mergeSort(array);
+        quickSort(array, 0, array.length - 1);
         long endTime = System.nanoTime();
 
         System.out.print( "Array    : ");
@@ -13,6 +13,38 @@ public class Main {
 
         float duration = (endTime - startTime);
         System.out.println( "\nDuration : " + duration/1000000);
+    }
+
+    public static void quickSort(int[] array, int low, int high) {
+        if (low < high) {
+            int p = partitions(array, low, high);
+
+            quickSort(array, low, p - 1);
+            quickSort(array, p + 1, high);
+        }
+    }
+
+    public static int partitions(int[] array, int low, int high) {
+        int pvt = array[low];
+        int i = low;
+        int j = high;
+
+        while (i < j) {
+            i++;
+            while (i<=high && array[i] < pvt) {
+                i++;
+            }
+
+            while (j>=low && array[j] > pvt){
+                j--;
+            }
+
+            if (i<=high && i<j) {
+                swap(array, i, j);
+            }
+        }
+        swap(array, low, j);
+        return j;
     }
 
     public static int[] mergeSort(int[] array) {
